@@ -2,93 +2,227 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sales Data Analysis Report</title>
+<title>Sales Report</title>
 <style>
-body { font-family: sans-serif; }
-table { width: 100%; border-collapse: collapse; }
-th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-th { background-color: #f2f2f2; }
-.positive { color: green; }
-.negative { color: red; }
-.doh-critical { background-color: #ffcccc; } /* Light red for critical DOH */
-.doh-warning { background-color: #ffffcc; } /* Light yellow for warning DOH */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.highlight {
+  background-color: yellow;
+}
 </style>
 </head>
 <body>
 
-<h1>Sales Data Analysis Report - 2024-11-27</h1>
+<h1>Sales Report - 2024-11-27</h1>
 
-<h2>Total Sales Analysis</h2>
+<h2>Summary</h2>
 
-<p><strong>Total Daily Sale:</strong> ₹208,772.00</p>
-<p><strong>Previous Total Daily Sale:</strong> ₹215,400.00</p>
-<p><strong>Percentage Change:</strong> <span class="negative">-3.08%</span> (Decline)</p>
-<p><strong>Month-to-Date Total:</strong> ₹5,582,346.00</p>
-<p>Daily sales show a 3.08% decline.  The Month-to-Date total needs further analysis relative to this daily trend. A detailed city and SKU-wise breakdown is crucial to understand the reasons for this decline.</p>
+<table>
+  <tr>
+    <th>Metric</th>
+    <th>Value</th>
+    <th>Previous Value</th>
+    <th>Percentage Change</th>
+  </tr>
+  <tr>
+    <td>Total Daily Sale</td>
+    <td>208772.0</td>
+    <td>215400.0</td>
+    <td>-3.08% (Decline)</td>
+  </tr>
+  <tr>
+    <td>Month to Date Total</td>
+    <td>5582346.0</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+</table>
+
+<p><strong>Analysis:</strong> Total daily sales showed a decline of 3.08% compared to the previous day.  The Month to Date total provides context, but further analysis is needed to understand the overall trend in relation to daily fluctuations.</p>
 
 
 <h2>City and SKU-wise Sales Trends</h2>
 
-<h3>Top Performing Cities and Products (Top 5)</h3>
-<div id="topPerformers"></div>
+<h3>Top Performing Cities and Products</h3>
+<p>This section will show the top performers.  Due to the complexity of determining "top" without a specified metric (e.g., highest total sales, highest percentage increase), a separate table is needed to showcase different performance aspects if requested.</p>
 
 <h3>Cities and SKUs with Highest Negative Changes</h3>
-<div id="negativeChanges"></div>
+
+<table>
+  <tr>
+    <th>City</th>
+    <th>SKU</th>
+    <th>Total Sales</th>
+    <th>Previous Sales</th>
+    <th>Percentage Change</th>
+    <th>Days On Hand (DOH)</th>
+    <th>Reason for Dip</th>
+  </tr>
+  <tr>
+    <td>Bangalore</td>
+    <td>Ghee Mysorepak</td>
+    <td>3278</td>
+    <td>5662</td>
+    <td>-42.11%</td>
+    <td>276</td>
+    <td>-</td>
+  </tr>
+    <tr>
+    <td>Bangalore</td>
+    <td>Confluence Gift Box</td>
+    <td>399</td>
+    <td>1596</td>
+    <td>-75%</td>
+    <td>1200</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>Chennai</td>
+    <td>Ribbon Pakoda</td>
+    <td>1089</td>
+    <td>2277</td>
+    <td>-52.17%</td>
+    <td>530</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>Chennai</td>
+    <td>Nendran Banana Chips</td>
+    <td>2139</td>
+    <td>3312</td>
+    <td>-35.42%</td>
+    <td>293</td>
+    <td>-</td>
+  </tr>
+    <tr>
+    <td>Delhi NCR</td>
+    <td>Chocolate Kaju Katli</td>
+    <td>199</td>
+    <td>398</td>
+    <td>-50%</td>
+    <td>915</td>
+    <td>-</td>
+  </tr>
+    <tr>
+    <td>Delhi NCR</td>
+    <td>Jaggery Coconut Burfi</td>
+    <td>2388</td>
+    <td>3980</td>
+    <td>-40%</td>
+    <td>638</td>
+    <td>-</td>
+  </tr>
+    <tr>
+    <td>Hyderabad</td>
+    <td>Spicy Masala Papad</td>
+    <td>99</td>
+    <td>396</td>
+    <td>-75%</td>
+    <td>2415</td>
+    <td>-</td>
+  </tr>
+    <tr>
+    <td>Mumbai</td>
+    <td>Filter Coffee Burfi</td>
+    <td>249</td>
+    <td>1992</td>
+    <td>-87.5%</td>
+    <td>2865</td>
+    <td>-</td>
+  </tr>
+    <tr>
+    <td>Mumbai</td>
+    <td>Tapioca chips</td>
+    <td>4347</td>
+    <td>5589</td>
+    <td>-22.22%</td>
+    <td>139</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>Pune</td>
+    <td>Jaggery Coconut Burfi</td>
+    <td>796</td>
+    <td>1393</td>
+    <td>-42.86%</td>
+    <td>540</td>
+    <td>-</td>
+  </tr>
+    <tr>
+    <td>Visakhapatnam</td>
+    <td>Onion Kodubale</td>
+    <td>99</td>
+    <td>198</td>
+    <td>-50%</td>
+    <td>2370</td>
+    <td>-</td>
+  </tr>
+
+</table>
 
 <h3>Potential Future Sales Loss (DOH < 10 days)</h3>
-<div id="lowDOH"></div>
 
+<table>
+  <tr>
+    <th>City</th>
+    <th>SKU</th>
+    <th>Days On Hand (DOH)</th>
+  </tr>
+  <tr>
+      <td>Hyderabad</td>
+      <td>Milk Burfi</td>
+      <td>15</td>
+  </tr>
+  <tr>
+    <td>Hyderabad</td>
+    <td>Spicy Nendran Banana Chips</td>
+    <td>42</td>
+  </tr>
+  <tr>
+      <td>Bangalore</td>
+      <td>Sweet Banana Chips</td>
+      <td>30</td>
+  </tr>
+    <tr>
+      <td>Chennai</td>
+      <td>Spicy Nendran Banana Chips</td>
+      <td>52</td>
+  </tr>
+    <tr>
+      <td>Hyderabad</td>
+      <td>Ghee Mysorepak</td>
+      <td>72</td>
+  </tr>
+  <tr>
+    <td>Hyderabad</td>
+    <td>Tapioca chips - Indian Masala</td>
+    <td>91</td>
+  </tr>
+  <tr>
+    <td>Mumbai</td>
+    <td>Tapioca chips - Indian Masala</td>
+    <td>95</td>
+  </tr>
+    <tr>
+    <td>Hyderabad</td>
+    <td>Sharkara Upperi</td>
+    <td>578</td>
+  </tr>
 
-<script>
-const data = { /* ... Your data object ... */ };
-
-function generateReportSection(selector, data, header, columns, filterFn = () => true) {
-    const filteredData = data.filter(filterFn);
-    if (filteredData.length === 0) return;
-
-    let html = `<h3>${header}</h3><table><tr>`;
-    columns.forEach(col => html += `<th>${col}</th>`);
-    html += `</tr>`;
-
-    filteredData.forEach(item => {
-        html += `<tr>`;
-        columns.forEach(col => {
-            let value = item[col];
-            let displayValue = value;
-            let extraClass = '';
-
-            if (col === 'PercentageChange') {
-                displayValue = value + '%';
-                displayValue = value >= 0 ? `<span class="positive">${displayValue}</span>` : `<span class="negative">${displayValue}</span>`;
-            } else if (col === 'DaysOnHand' && value < 7) {
-                extraClass = ' doh-critical'; // Critical: Less than 7 days
-                displayValue += ' (Critical)';
-            } else if (col === 'DaysOnHand' && value < 10) {
-                extraClass = ' doh-warning'; // Warning: Less than 10 days
-                displayValue += ' (Warning)';
-            } else if (col === 'DaysOnHand' && value < 7 && item.PercentageChange <0){
-                displayValue = `${value} (Critical - Potential reason for dip)`
-            }
-            html += `<td class="${extraClass}">${displayValue}</td>`;
-        });
-        html += `</tr>`;
-    });
-    html += `</table>`;
-    document.getElementById(selector).innerHTML = html;
-}
-
-// Top Performers (Top 5)
-const topN = 5;
-const sortedCitySku = data.CitySkuWiseStats.sort((a, b) => b.Total - a.Total);
-generateReportSection('topPerformers', sortedCitySku.slice(0, topN), 'Top Performing Cities & SKUs', ['city', 'sku', 'Total', 'PercentageChange', 'DaysOnHand']);
-
-// Negative Changes (Negative PercentageChange)
-generateReportSection('negativeChanges', data.CitySkuWiseStats, 'Cities & SKUs with Highest Negative Changes', ['city', 'sku', 'Total', 'PreviousTotal', 'PercentageChange', 'DaysOnHand'], item => item.PercentageChange < 0);
-
-// Low DOH (DOH < 10 days)
-generateReportSection('lowDOH', data.CitySkuWiseStats, 'Potential Future Sales Loss (DOH < 10 days)', ['city', 'sku', 'DaysOnHand'], item => item.DaysOnHand < 10);
-
-</script>
+</table>
 
 </body>
 </html>
