@@ -4,23 +4,27 @@
 <head>
 <title>Sales Report</title>
 <style>
+body {
+  font-family: sans-serif;
+}
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
-
 th, td {
-  border: 1px solid black;
+  border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
-
 th {
   background-color: #f2f2f2;
 }
-
-.highlight {
-  background-color: yellow;
+.positive {
+  color: green;
+}
+.negative {
+  color: red;
 }
 </style>
 </head>
@@ -28,198 +32,197 @@ th {
 
 <h1>Sales Report - 2024-11-27</h1>
 
-<h2>Summary</h2>
+<h2>Total Sales Analysis</h2>
 
-<table>
-  <tr>
-    <th>Metric</th>
-    <th>Value</th>
-    <th>Previous Value</th>
-    <th>Percentage Change</th>
-  </tr>
-  <tr>
-    <td>Total Daily Sale</td>
-    <td>208772.0</td>
-    <td>215400.0</td>
-    <td>-3.08% (Decline)</td>
-  </tr>
-  <tr>
-    <td>Month to Date Total</td>
-    <td>5582346.0</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-</table>
-
-<p><strong>Analysis:</strong> Total daily sales showed a decline of 3.08% compared to the previous day.  The Month to Date total provides context, but further analysis is needed to understand the overall trend in relation to daily fluctuations.  A deeper dive into city and SKU-wise data is crucial for identifying the root causes of this decline.</p>
+<p><strong>Total Daily Sales:</strong> ₹208,772.00</p>
+<p><strong>Previous Total Daily Sales:</strong> ₹215,400.00</p>
+<p><strong>Percentage Change:</strong> <span class="negative">-3.08%</span> (Decline)</p>
+<p><strong>Month-to-Date Total:</strong> ₹5,582,346.00</p>
+<p>The daily sales show a decline, which needs further investigation considering the Month-to-Date total. The overall trend might not be entirely negative, and daily fluctuations are common.  Further analysis at city and SKU level can provide a better perspective.</p>
 
 
 <h2>City and SKU-wise Sales Trends</h2>
 
-<h3>Top Performing Cities and Products</h3>
-<p>This section would ideally show top performers by sales volume or percentage growth.  However, without a specific metric for "top," a table showcasing different ranking methods would be necessary (e.g., highest total sales, highest percentage increase). Please specify the desired metric for a more detailed analysis.</p>
+<h3>Top Performing SKUs</h3>
+<table>
+  <tr>
+    <th>SKU</th>
+    <th>Total Sales</th>
+  </tr>
+  <tr>
+    <td>Tapioca chips - Indian Masala</td>
+    <td>₹29,049</td>
+  </tr>
+  <tr>
+    <td>Special Madras Mixture</td>
+    <td>₹23,562</td>
+  </tr>
+  <tr>
+    <td>Nendran Banana Chips</td>
+    <td>₹28,980</td>
+  </tr>
+  <tr>
+    <td>Ribbon Pakoda</td>
+    <td>₹18,909</td>
+  </tr>
+  <tr>
+    <td>Onion Kodubale</td>
+    <td>₹23,367</td>
+  </tr>
+</table>
 
-
-<h3>Cities and SKUs with Highest Negative Changes</h3>
-
+<h3>Top Performing Cities</h3>
 <table>
   <tr>
     <th>City</th>
-    <th>SKU</th>
     <th>Total Sales</th>
-    <th>Previous Sales</th>
-    <th>Percentage Change</th>
-    <th>Days On Hand (DOH)</th>
-    <th>Reason for Dip (Speculative)</th>
   </tr>
   <tr>
     <td>Bangalore</td>
-    <td>Confluence Gift Box</td>
-    <td>399</td>
-    <td>1596</td>
-    <td>-75%</td>
-    <td>1200</td>
-    <td>Potentially due to high DOH, suggesting overstocking or low demand.</td>
+    <td>₹59,626</td>
   </tr>
   <tr>
-    <td>Bangalore</td>
-    <td>Ghee Mysorepak</td>
-    <td>3278</td>
-    <td>5662</td>
-    <td>-42.11%</td>
-    <td>276</td>
-    <td>High DOH might indicate reduced demand or ineffective marketing.</td>
-  </tr>
-  <tr>
-    <td>Chennai</td>
-    <td>Ribbon Pakoda</td>
-    <td>1089</td>
-    <td>2277</td>
-    <td>-52.17%</td>
-    <td>530</td>
-    <td>High DOH, possibly indicating overstocking or a seasonal drop in demand.</td>
-  </tr>
-  <tr>
-    <td>Chennai</td>
-    <td>Nendran Banana Chips</td>
-    <td>2139</td>
-    <td>3312</td>
-    <td>-35.42%</td>
-    <td>293</td>
-    <td>Relatively high DOH; investigate market trends and competitor activity.</td>
+    <td>Mumbai</td>
+    <td>₹38,639</td>
   </tr>
   <tr>
     <td>Delhi NCR</td>
-    <td>Chocolate Kaju Katli</td>
-    <td>199</td>
-    <td>398</td>
-    <td>-50%</td>
-    <td>915</td>
-    <td>Extremely high DOH suggests significant overstocking and low demand.</td>
-  </tr>
-  <tr>
-    <td>Delhi NCR</td>
-    <td>Jaggery Coconut Burfi</td>
-    <td>2388</td>
-    <td>3980</td>
-    <td>-40%</td>
-    <td>638</td>
-    <td>High DOH could indicate reduced popularity or pricing issues.</td>
+    <td>₹41,525</td>
   </tr>
   <tr>
     <td>Hyderabad</td>
-    <td>Spicy Masala Papad</td>
-    <td>99</td>
-    <td>396</td>
-    <td>-75%</td>
-    <td>2415</td>
-    <td>Extremely high DOH; product likely obsolete or facing intense competition.</td>
+    <td>₹26,954</td>
   </tr>
   <tr>
-    <td>Mumbai</td>
+    <td>Chennai</td>
+    <td>₹20,364</td>
+  </tr>
+</table>
+
+<h3>Worst Performing SKUs</h3>
+<table>
+  <tr>
+    <th>SKU</th>
+    <th>Total Sales</th>
+    <th>Percentage Change</th>
+  </tr>
+  <tr>
+    <td>Seedai</td>
+    <td>₹495</td>
+    <td>-54.55%</td>
+  </tr>
+  <tr>
     <td>Filter Coffee Burfi</td>
-    <td>249</td>
-    <td>1992</td>
-    <td>-87.5%</td>
-    <td>2865</td>
-    <td>Very high DOH implies significant overstocking; review product lifecycle and market fit.</td>
+    <td>₹6,972</td>
+    <td>-24.32%</td>
   </tr>
   <tr>
-    <td>Mumbai</td>
-    <td>Tapioca chips</td>
-    <td>4347</td>
-    <td>5589</td>
-    <td>-22.22%</td>
-    <td>139</td>
-    <td>Moderately high DOH, investigate potential reasons for reduced sales.</td>
+    <td>Ghee Mysorepak</td>
+    <td>₹18,327</td>
+    <td>-15.17%</td>
   </tr>
   <tr>
-    <td>Pune</td>
     <td>Jaggery Coconut Burfi</td>
-    <td>796</td>
-    <td>1393</td>
-    <td>-42.86%</td>
-    <td>540</td>
-    <td>High DOH points towards overstocking or a shift in customer preference.</td>
+    <td>₹9,552</td>
+    <td>-15.79%</td>
+  </tr>
+  <tr>
+    <td>Tapioca chips</td>
+    <td>₹17,388</td>
+    <td>-17.11%</td>
+  </tr>
+</table>
+
+<h3>Worst Performing Cities</h3>
+<table>
+  <tr>
+    <th>City</th>
+    <th>Total Sales</th>
+    <th>Percentage Change</th>
+  </tr>
+  <tr>
+    <td>Kochi</td>
+    <td>₹773</td>
+    <td>-30.86%</td>
   </tr>
   <tr>
     <td>Visakhapatnam</td>
-    <td>Onion Kodubale</td>
-    <td>99</td>
-    <td>198</td>
-    <td>-50%</td>
-    <td>2370</td>
-    <td>Extremely high DOH, indicating a serious issue with demand or inventory management.</td>
+    <td>₹1,463</td>
+    <td>-18.86%</td>
   </tr>
-
+  <tr>
+    <td>Delhi NCR</td>
+    <td>₹41,525</td>
+    <td>-14.58%</td>
+  </tr>
+  <tr>
+    <td>Bangalore</td>
+    <td>₹59,626</td>
+    <td>-5.10%</td>
+  </tr>
+  <tr>
+    <td>Chennai</td>
+    <td>₹20,364</td>
+    <td>-2.20%</td>
+  </tr>
 </table>
 
-<h3>Potential Future Sales Loss (DOH <= 15 days)</h3>
+
+<h2>SKUs and Cities with Negative Growth and DOH <= 15</h2>
 
 <table>
   <tr>
     <th>City</th>
     <th>SKU</th>
     <th>Days On Hand (DOH)</th>
-    <th>Potential Loss Reason</th>
-  </tr>
-    <tr>
-      <td>Hyderabad</td>
-      <td>Milk Burfi</td>
-      <td>15</td>
-      <td>Risk of spoilage or obsolescence if not sold quickly.</td>
-  </tr>
-  <tr>
-      <td>Bangalore</td>
-      <td>Sweet Banana Chips</td>
-      <td>30</td>
-      <td>Perishable goods with short shelf-life; potential for spoilage losses.</td>
-  </tr>
-  <tr>
-      <td>Chennai</td>
-      <td>Spicy Nendran Banana Chips</td>
-      <td>52</td>
-      <td>Short shelf life; potential for spoilage losses or reduced appeal over time.</td>
-  </tr>
-    <tr>
-      <td>Hyderabad</td>
-      <td>Ghee Mysorepak</td>
-      <td>72</td>
-      <td>Risk of spoilage or reduced freshness affecting sales.</td>
   </tr>
   <tr>
     <td>Hyderabad</td>
-    <td>Tapioca chips - Indian Masala</td>
-    <td>91</td>
-    <td>Increased risk of stock becoming stale or outdated.</td>
+    <td>Milk Burfi</td>
+    <td>15</td>
+  </tr>
+</table>
+
+
+<h2>Potential Future Sales Loss (DOH <= 15)</h2>
+
+<table>
+  <tr>
+    <th>City</th>
+    <th>SKU</th>
+    <th>Days On Hand (DOH)</th>
+  </tr>
+    <tr>
+    <td>Hyderabad</td>
+    <td>Milk Burfi</td>
+    <td>15</td>
   </tr>
   <tr>
-    <td>Mumbai</td>
-    <td>Tapioca chips - Indian Masala</td>
-    <td>95</td>
-    <td>Potential for lower quality/sales due to longer storage.</td>
+    <td>Kochi</td>
+    <td>Chilli Potato Papad</td>
+    <td>0</td>
   </tr>
-  
+  <tr>
+    <td>Kochi</td>
+    <td>Nendran Banana Chips</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Kochi</td>
+    <td>Special Madras Mixture</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Kochi</td>
+    <td>Ragi Laddu</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Hyderabad</td>
+    <td>Jaggery Coconut Burfi</td>
+    <td>0</td>
+  </tr>
+
 </table>
 
 </body>
