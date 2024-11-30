@@ -51,13 +51,14 @@ th {
   </tr>
 </table>
 
-<p><strong>Analysis:</strong> Total daily sales showed a decline of 3.08% compared to the previous day.  The Month to Date total provides context, but further analysis is needed to understand the overall trend in relation to daily fluctuations.</p>
+<p><strong>Analysis:</strong> Total daily sales showed a decline of 3.08% compared to the previous day.  The Month to Date total provides context, but further analysis is needed to understand the overall trend in relation to daily fluctuations.  A deeper dive into city and SKU-wise data is crucial for identifying the root causes of this decline.</p>
 
 
 <h2>City and SKU-wise Sales Trends</h2>
 
 <h3>Top Performing Cities and Products</h3>
-<p>This section will show the top performers.  Due to the complexity of determining "top" without a specified metric (e.g., highest total sales, highest percentage increase), a separate table is needed to showcase different performance aspects if requested.</p>
+<p>This section would ideally show top performers by sales volume or percentage growth.  However, without a specific metric for "top," a table showcasing different ranking methods would be necessary (e.g., highest total sales, highest percentage increase). Please specify the desired metric for a more detailed analysis.</p>
+
 
 <h3>Cities and SKUs with Highest Negative Changes</h3>
 
@@ -69,7 +70,16 @@ th {
     <th>Previous Sales</th>
     <th>Percentage Change</th>
     <th>Days On Hand (DOH)</th>
-    <th>Reason for Dip</th>
+    <th>Reason for Dip (Speculative)</th>
+  </tr>
+  <tr>
+    <td>Bangalore</td>
+    <td>Confluence Gift Box</td>
+    <td>399</td>
+    <td>1596</td>
+    <td>-75%</td>
+    <td>1200</td>
+    <td>Potentially due to high DOH, suggesting overstocking or low demand.</td>
   </tr>
   <tr>
     <td>Bangalore</td>
@@ -78,16 +88,7 @@ th {
     <td>5662</td>
     <td>-42.11%</td>
     <td>276</td>
-    <td>-</td>
-  </tr>
-    <tr>
-    <td>Bangalore</td>
-    <td>Confluence Gift Box</td>
-    <td>399</td>
-    <td>1596</td>
-    <td>-75%</td>
-    <td>1200</td>
-    <td>-</td>
+    <td>High DOH might indicate reduced demand or ineffective marketing.</td>
   </tr>
   <tr>
     <td>Chennai</td>
@@ -96,7 +97,7 @@ th {
     <td>2277</td>
     <td>-52.17%</td>
     <td>530</td>
-    <td>-</td>
+    <td>High DOH, possibly indicating overstocking or a seasonal drop in demand.</td>
   </tr>
   <tr>
     <td>Chennai</td>
@@ -105,52 +106,52 @@ th {
     <td>3312</td>
     <td>-35.42%</td>
     <td>293</td>
-    <td>-</td>
+    <td>Relatively high DOH; investigate market trends and competitor activity.</td>
   </tr>
-    <tr>
+  <tr>
     <td>Delhi NCR</td>
     <td>Chocolate Kaju Katli</td>
     <td>199</td>
     <td>398</td>
     <td>-50%</td>
     <td>915</td>
-    <td>-</td>
+    <td>Extremely high DOH suggests significant overstocking and low demand.</td>
   </tr>
-    <tr>
+  <tr>
     <td>Delhi NCR</td>
     <td>Jaggery Coconut Burfi</td>
     <td>2388</td>
     <td>3980</td>
     <td>-40%</td>
     <td>638</td>
-    <td>-</td>
+    <td>High DOH could indicate reduced popularity or pricing issues.</td>
   </tr>
-    <tr>
+  <tr>
     <td>Hyderabad</td>
     <td>Spicy Masala Papad</td>
     <td>99</td>
     <td>396</td>
     <td>-75%</td>
     <td>2415</td>
-    <td>-</td>
+    <td>Extremely high DOH; product likely obsolete or facing intense competition.</td>
   </tr>
-    <tr>
+  <tr>
     <td>Mumbai</td>
     <td>Filter Coffee Burfi</td>
     <td>249</td>
     <td>1992</td>
     <td>-87.5%</td>
     <td>2865</td>
-    <td>-</td>
+    <td>Very high DOH implies significant overstocking; review product lifecycle and market fit.</td>
   </tr>
-    <tr>
+  <tr>
     <td>Mumbai</td>
     <td>Tapioca chips</td>
     <td>4347</td>
     <td>5589</td>
     <td>-22.22%</td>
     <td>139</td>
-    <td>-</td>
+    <td>Moderately high DOH, investigate potential reasons for reduced sales.</td>
   </tr>
   <tr>
     <td>Pune</td>
@@ -159,69 +160,66 @@ th {
     <td>1393</td>
     <td>-42.86%</td>
     <td>540</td>
-    <td>-</td>
+    <td>High DOH points towards overstocking or a shift in customer preference.</td>
   </tr>
-    <tr>
+  <tr>
     <td>Visakhapatnam</td>
     <td>Onion Kodubale</td>
     <td>99</td>
     <td>198</td>
     <td>-50%</td>
     <td>2370</td>
-    <td>-</td>
+    <td>Extremely high DOH, indicating a serious issue with demand or inventory management.</td>
   </tr>
 
 </table>
 
-<h3>Potential Future Sales Loss (DOH < 10 days)</h3>
+<h3>Potential Future Sales Loss (DOH <= 15 days)</h3>
 
 <table>
   <tr>
     <th>City</th>
     <th>SKU</th>
     <th>Days On Hand (DOH)</th>
+    <th>Potential Loss Reason</th>
   </tr>
-  <tr>
+    <tr>
       <td>Hyderabad</td>
       <td>Milk Burfi</td>
       <td>15</td>
-  </tr>
-  <tr>
-    <td>Hyderabad</td>
-    <td>Spicy Nendran Banana Chips</td>
-    <td>42</td>
+      <td>Risk of spoilage or obsolescence if not sold quickly.</td>
   </tr>
   <tr>
       <td>Bangalore</td>
       <td>Sweet Banana Chips</td>
       <td>30</td>
+      <td>Perishable goods with short shelf-life; potential for spoilage losses.</td>
   </tr>
-    <tr>
+  <tr>
       <td>Chennai</td>
       <td>Spicy Nendran Banana Chips</td>
       <td>52</td>
+      <td>Short shelf life; potential for spoilage losses or reduced appeal over time.</td>
   </tr>
     <tr>
       <td>Hyderabad</td>
       <td>Ghee Mysorepak</td>
       <td>72</td>
+      <td>Risk of spoilage or reduced freshness affecting sales.</td>
   </tr>
   <tr>
     <td>Hyderabad</td>
     <td>Tapioca chips - Indian Masala</td>
     <td>91</td>
+    <td>Increased risk of stock becoming stale or outdated.</td>
   </tr>
   <tr>
     <td>Mumbai</td>
     <td>Tapioca chips - Indian Masala</td>
     <td>95</td>
+    <td>Potential for lower quality/sales due to longer storage.</td>
   </tr>
-    <tr>
-    <td>Hyderabad</td>
-    <td>Sharkara Upperi</td>
-    <td>578</td>
-  </tr>
-
+  
 </table>
 
 </body>
