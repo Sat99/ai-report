@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +11,7 @@ th { background-color: #f2f2f2; }
 .positive { color: green; }
 .negative { color: red; }
 .doh-critical { background-color: #ffcccc; } /* Light red for critical DOH */
+.doh-warning { background-color: #ffffcc; } /* Light yellow for warning DOH */
 </style>
 </head>
 <body>
@@ -23,25 +24,18 @@ th { background-color: #f2f2f2; }
 <p><strong>Previous Total Daily Sale:</strong> ₹215,400.00</p>
 <p><strong>Percentage Change:</strong> <span class="negative">-3.08%</span> (Decline)</p>
 <p><strong>Month-to-Date Total:</strong> ₹5,582,346.00</p>
-<p>Daily sales show a 3.08% decline. The Month-to-Date total requires further analysis in relation to this daily trend. A detailed city and SKU-wise breakdown is crucial for understanding the causes of this decline.</p>
+<p>Daily sales show a 3.08% decline.  The Month-to-Date total needs further analysis relative to this daily trend. A detailed city and SKU-wise breakdown is crucial to understand the reasons for this decline.</p>
 
 
 <h2>City and SKU-wise Sales Trends</h2>
 
-<h3>Top Performing Cities and Products</h3>
-<p>This section shows the top 5 cities and SKUs based on total sales. Note: This table dynamically shows the top performers based on sales totals.</p>
+<h3>Top Performing Cities and Products (Top 5)</h3>
 <div id="topPerformers"></div>
 
 <h3>Cities and SKUs with Highest Negative Changes</h3>
-<p>This section identifies cities and SKUs with the most significant sales decline.  Low Days On Hand (DOH) is investigated as a contributing factor.</p>
 <div id="negativeChanges"></div>
 
 <h3>Potential Future Sales Loss (DOH < 10 days)</h3>
-<p>The following SKUs and cities have critically low Days On Hand, suggesting potential stockouts and future sales loss. Immediate action is needed to replenish stock.</p>
-<div id="lowDOH"></div>
-
-<h3>Potential Future Sales Loss (DOH < 10 days)</h3>
-<p>SKUs and cities with Days On Hand (DOH) less than 10 days are highlighted below.  These represent a high risk of stockouts and potential future sales loss. Replenishment is urgently needed.</p>
 <div id="lowDOH"></div>
 
 
@@ -49,8 +43,13 @@ th { background-color: #f2f2f2; }
 const data = { /* ... Your data object ... */ };
 
 function generateReportSection(selector, data, header, columns, filterFn = () => true) {
-    // ... (same as before)
-    
+    const filteredData = data.filter(filterFn);
+    if (filteredData.length === 0) return;
+
+    let html = `<h3>${header}</h3><table><tr>`;
+    columns.forEach(col => html += `<th>${col}</th>`);
+    html += `</tr>`;
+
     filteredData.forEach(item => {
         html += `<tr>`;
         columns.forEach(col => {
@@ -61,8 +60,14 @@ function generateReportSection(selector, data, header, columns, filterFn = () =>
             if (col === 'PercentageChange') {
                 displayValue = value + '%';
                 displayValue = value >= 0 ? `<span class="positive">${displayValue}</span>` : `<span class="negative">${displayValue}</span>`;
+            } else if (col === 'DaysOnHand' && value < 7) {
+                extraClass = ' doh-critical'; // Critical: Less than 7 days
+                displayValue += ' (Critical)';
             } else if (col === 'DaysOnHand' && value < 10) {
-                extraClass = ' doh-critical';
+                extraClass = ' doh-warning'; // Warning: Less than 10 days
+                displayValue += ' (Warning)';
+            } else if (col === 'DaysOnHand' && value < 7 && item.PercentageChange <0){
+                displayValue = `${value} (Critical - Potential reason for dip)`
             }
             html += `<td class="${extraClass}">${displayValue}</td>`;
         });
@@ -75,11 +80,10 @@ function generateReportSection(selector, data, header, columns, filterFn = () =>
 // Top Performers (Top 5)
 const topN = 5;
 const sortedCitySku = data.CitySkuWiseStats.sort((a, b) => b.Total - a.Total);
-generateReportSection('topPerformers', sortedCitySku.slice(0, topN), 'Top Performing Cities & SKUs', ['city', 'sku', 'Total', 'PercentageChange']);
+generateReportSection('topPerformers', sortedCitySku.slice(0, topN), 'Top Performing Cities & SKUs', ['city', 'sku', 'Total', 'PercentageChange', 'DaysOnHand']);
 
 // Negative Changes (Negative PercentageChange)
-generateReportSection('negativeChanges', data.CitySkuWiseStats, 'Cities & SKUs with Highest Negative Changes', ['city', 'sku', 'Total', 'PreviousTotal', 'PercentageChange', 'DaysOnHand'], item => item.PercentageChange < 0 && item.DaysOnHand < 7 ? 'DOH is a potential reason for dip in sales' : '');
-
+generateReportSection('negativeChanges', data.CitySkuWiseStats, 'Cities & SKUs with Highest Negative Changes', ['city', 'sku', 'Total', 'PreviousTotal', 'PercentageChange', 'DaysOnHand'], item => item.PercentageChange < 0);
 
 // Low DOH (DOH < 10 days)
 generateReportSection('lowDOH', data.CitySkuWiseStats, 'Potential Future Sales Loss (DOH < 10 days)', ['city', 'sku', 'DaysOnHand'], item => item.DaysOnHand < 10);
@@ -88,15 +92,3 @@ generateReportSection('lowDOH', data.CitySkuWiseStats, 'Potential Future Sales L
 
 </body>
 </html>
-```
-
-Key improvements:
-
-* **CSS for Critical DOH:** Added a `doh-critical` class to highlight rows with `DaysOnHand < 10` in light red.
-* **DOH < 7 Reason:**  The `negativeChanges` section now conditionally adds a comment ("DOH is a potential reason...") if `DaysOnHand < 7`.
-* **Top Performers Clarification:**  The comment now explicitly states that only the top 5 are shown.
-* **Error Handling (optional):**  You might want to add error handling (e.g., a check if `data` is valid) to make the script more robust.
-* **Efficiency:** Minor code improvements for better readability and efficiency.
-
-
-Remember to paste your entire `data` JSON object into the `<script>` section where indicated.  The script now correctly handles the data and generates a more informative report, highlighting critical DOH situations and offering insights into potential causes for sales decline.
