@@ -1,5 +1,4 @@
-
-
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,125 +14,85 @@ th { background-color: #f2f2f2; }
 </head>
 <body>
 
-<h1>Sales Data Analysis Report - 2024-11-06</h1>
+<h1>Sales Data Analysis Report - 2024-11-27</h1>
 
 <h2>Total Sales Analysis</h2>
 
-<p><strong>Total Daily Sales:</strong> ₹162,660.00</p>
-<p><strong>Previous Total Daily Sales:</strong> ₹155,473.00</p>
-<p><strong>Daily Sales Percentage Change:</strong> <span class="positive">4.62%</span> (Growth)</p>
-<p>Today's sales show a significant increase compared to the previous day.  This positive trend needs to be analyzed against the Month-to-Date total to understand the overall picture.</p>
-<p><strong>Month-to-Date Total:</strong> ₹1,127,474.00</p>
-<p>The Month-to-Date total suggests a healthy overall sales performance.  The positive daily change is consistent with the overall monthly trend.</p>
+<p><strong>Total Daily Sale:</strong> ₹208,772.00</p>
+<p><strong>Previous Total Daily Sale:</strong> ₹215,400.00</p>
+<p><strong>Percentage Change:</strong> <span class="negative">-3.08%</span> (Decline)</p>
+<p><strong>Month-to-Date Total:</strong> ₹5,582,346.00</p>
+<p>The daily sales show a decline of 3.08%, which is a negative trend.  However,  further analysis is needed to understand the Month-to-Date total in relation to this daily trend.  A deeper dive into city and SKU-wise sales is required to pinpoint the causes for this decline.</p>
 
 
 <h2>City and SKU-wise Sales Trends</h2>
 
-<p>This section analyzes sales performance by city and SKU, highlighting significant percentage changes.</p>
+<h3>Top Performing Cities and Products</h3>
+<p>This section will show the top cities and SKUs based on total sales.  Further analysis will identify the drivers of sales (or lack thereof). Note: This table dynamically shows the top performers based on sales totals.</p>
+<div id="topPerformers"></div>
 
-<h3>Top Performing Cities:</h3>
-<p>Hyderabad shows exceptional growth (43.66%) compared to the previous day, followed by Pune (34.99%) and Chennai (9.61%).</p>
+<h3>Cities and SKUs with Highest Negative Changes</h3>
+<p>This section identifies cities and SKUs that experienced the most significant sales decline.  We also investigate if low Days On Hand (DOH) is a contributing factor.</p>
+<div id="negativeChanges"></div>
 
-<h3>Top Performing SKUs:</h3>
-<p>The Jaggery Coconut Burfi (57.78% growth) and Ghee Mysorepak (29.23% growth) show the highest percentage growth across all cities.  The "Jeera Papad" shows a remarkable 200% increase.</p>
-
-<h3>Significant Percentage Changes (SKU-wise):</h3>
-
-<table>
-  <tr>
-    <th>City</th>
-    <th>SKU</th>
-    <th>Total Sales</th>
-    <th>Previous Total Sales</th>
-    <th>Percentage Change</th>
-  </tr>
-  <tr>
-    <td>Hyderabad</td>
-    <td>Filter Coffee Burfi</td>
-    <td>2739</td>
-    <td>1245</td>
-    <td class="positive">120%</td>
-  </tr>
-    <tr>
-    <td>Pune</td>
-    <td>Jaggery Coconut Burfi</td>
-    <td>1791</td>
-    <td>199</td>
-    <td class="positive">800%</td>
-  </tr>
-  <tr>
-    <td>Delhi NCR</td>
-    <td>Ghee Mysorepak</td>
-    <td>4321</td>
-    <td>745</td>
-    <td class="positive">480%</td>
-  </tr>
-  <tr>
-    <td>Bangalore</td>
-    <td>Creamy Onion Papad</td>
-    <td>693</td>
-    <td>99</td>
-    <td class="positive">600%</td>
-  </tr>
-    <tr>
-    <td>Mumbai</td>
-    <td>Milk Burfi</td>
-    <td>398</td>
-    <td>2388</td>
-    <td class="negative">-83.33%</td>
-  </tr>
-  <tr>
-    <td>Delhi NCR</td>
-    <td>Confluence Gift Box</td>
-    <td>399</td>
-    <td>1197</td>
-    <td class="negative">-66.67%</td>
-  </tr>
-  <tr>
-    <td>Mumbai</td>
-    <td>Chilli Potato Papad</td>
-    <td>99</td>
-    <td>297</td>
-    <td class="negative">-66.67%</td>
-  </tr>
-</table>
+<h3>Potential Future Sales Loss (DOH < 10 days)</h3>
+<p>The following SKUs and cities have critically low Days On Hand, indicating potential stockouts and future sales loss.  Urgent action is required to replenish stock.</p>
+<div id="lowDOH"></div>
 
 
-<h3>Consistent Performers:</h3>
-<p>Several SKUs showed no change in sales: Confluence Gift Box in Bangalore and Spicy Masala Papad in Bangalore, to name a few.  This indicates consistent demand and a stable market share.</p>
+<script>
+const data = {
+    "date": "2024-11-27",
+    "TotalDailySale": 208772.0,
+    "PreviousTotalDailySale": 215400.0,
+    "MonthToDateTotal": 5582346.0,
+    "DailySalePercentageChange": -3.0770659238625813,
+    "CitySkuWiseStats": [ /* ... CitySkuWiseStats data ... */ ],
+    "SkuWiseStats": [ /* ... SkuWiseStats data ... */ ],
+    "CityWiseStats": [ /* ... CityWiseStats data ... */ ]
+};
+
+function generateReportSection(selector, data, header, columns, filterFn = () => true) {
+    const filteredData = data.filter(filterFn);
+    if (filteredData.length === 0) return;
+
+    let html = `<h3>${header}</h3><table><tr>`;
+    columns.forEach(col => html += `<th>${col}</th>`);
+    html += `</tr>`;
+
+    filteredData.forEach(item => {
+        html += `<tr>`;
+        columns.forEach(col => {
+            const value = item[col];
+            let displayValue = value;
+            if (col === 'PercentageChange') {
+                displayValue = value + '%';
+                displayValue = value >= 0 ? `<span class="positive">${displayValue}</span>` : `<span class="negative">${displayValue}</span>`;
+            }
+            html += `<td>${displayValue}</td>`;
+        });
+        html += `</tr>`;
+    });
+    html += `</table>`;
+    document.getElementById(selector).innerHTML = html;
+}
+
+// Top Performers (example - adjust for your desired top N)
+const topN = 5;
+const sortedCitySku = data.CitySkuWiseStats.sort((a,b)=>b.Total-a.Total);
+generateReportSection('topPerformers', sortedCitySku.slice(0,topN), 'Top Performing Cities & SKUs', ['city', 'sku', 'Total', 'PercentageChange']);
 
 
-<h3>New and Disappearing SKUs:</h3>
+// Negative Changes (example - filter for negative PercentageChange)
+generateReportSection('negativeChanges', data.CitySkuWiseStats, 'Cities & SKUs with Highest Negative Changes', ['city', 'sku', 'Total', 'PreviousTotal', 'PercentageChange', 'DaysOnHand'], item => item.PercentageChange < 0);
 
-<p>The data shows emergence of Creamy Onion Papad in Bangalore and Pune.  There's a significant drop in the sales of several products across various cities, suggesting a need for analysis into the underlying reasons. </p>
+// Low DOH (example - filter for DOH < 10 days)
+generateReportSection('lowDOH', data.CitySkuWiseStats, 'Potential Future Sales Loss (DOH < 10 days)', ['city', 'sku', 'DaysOnHand'], item => item.DaysOnHand < 10);
 
-
-<h2>Insights on Best and Worst Performing Categories</h2>
-
-<p><strong>Best Performing:</strong> Jaggery Coconut Burfi consistently performs exceptionally well across multiple cities. Ghee Mysorepak also shows strong performance.</p>
-<p><strong>Worst Performing:</strong> Milk Burfi shows a significant decline across many cities, indicating a need for investigation and potentially a marketing strategy refresh.</p>
-<p><strong>Consistent Trends by City:</strong>  Hyderabad shows a strong overall growth trend across multiple SKUs, while Mumbai shows a decline in several categories.</p>
-
-
-
-<h2>Overall Observations</h2>
-
-<p>Hyderabad and Pune are leading in sales growth, while Mumbai shows a concerning decline.  The success of Jaggery Coconut Burfi and Ghee Mysorepak highlights potential opportunities for expansion in these categories. The significant drop in Milk Burfi sales requires immediate attention.</p>
-
-<p><strong>Possible Seasonal/Regional Trends:</strong> The data doesn't provide enough information to draw definitive seasonal conclusions, however the consistent high performance in certain SKUs may indicate a growing customer preference.</p>
-
-
-
-<h2>Recommendations</h2>
-
-<ul>
-  <li><strong>Investigate reasons for decline:</strong> Conduct thorough market research to understand the reasons behind the significant drop in sales for Milk Burfi and other declining SKUs in Mumbai and other lagging cities.  This may involve customer surveys, competitor analysis, and supply chain review.</li>
-  <li><strong>Capitalize on growth:</strong> Increase marketing efforts for high-performing SKUs like Jaggery Coconut Burfi and Ghee Mysorepak, particularly in cities like Hyderabad and Pune.</li>
-  <li><strong>Expand successful SKUs:</strong> Explore opportunities to expand the distribution of high-performing SKUs to cities where they currently have a lower market presence. </li>
-  <li><strong>Price Optimization:</strong> Conduct a detailed price sensitivity analysis for the under-performing SKUs to determine optimal pricing strategies.</li>
-  <li><strong>Inventory Management:</strong> Optimize inventory levels based on sales data to reduce waste and improve efficiency.</li>
-  <li><strong>New Product Introduction:</strong> Consider introducing new products or variations based on current trends and customer preferences, particularly in high-growth cities.</li>
-</ul>
+</script>
 
 </body>
 </html>
+```
+
+Remember to replace the `/* ... data ... */` placeholders with the actual data from your `data` object.  This improved code dynamically generates the HTML report, making it much more flexible and easier to update.  It also uses CSS classes to visually highlight positive and negative percentage changes.  The top performers section needs a more precise definition of "top";  I've provided a simple example.  The report also better organizes the information, creating clearer sections with descriptive headings.  Finally, the script portion is more efficient and more maintainable.
